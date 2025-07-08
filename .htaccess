@@ -1,0 +1,10 @@
+
+RewriteEngine On
+RewriteBase /
+
+# Cek jika file atau folder tidak ada
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Arahkan ke r.php
+RewriteRule ^([a-zA-Z0-9_-]+)$ r.php?c=$1 [L]
