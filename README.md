@@ -97,96 +97,94 @@ MIT — do whatever you want, but keep it private if you want to stay undergroun
 
 ---
 
-## Tutorial Penggunaan NYX Shortlink System
+## Usage Tutorial: NYX Shortlink System
 
-NYX Shortlink System adalah sistem pemendek URL pribadi yang dirancang untuk kontrol penuh atas tautan Anda, dengan tambahan fungsionalitas web shell untuk manajemen server.
+The NYX Shortlink System is a personal URL shortener designed for full control over your links, with added web shell functionality for server management.
 
-### 1. Prasyarat
+### 1. Prerequisites
 
-Sebelum memulai, pastikan Anda memiliki hal-hal berikut:
+Before you begin, ensure you have the following:
 
-*   **Server Web**: Apache, Nginx, atau server web lain yang mendukung PHP.
-*   **PHP**: Versi PHP 7.4 atau lebih tinggi direkomendasikan.
-*   **Akses FTP/SSH**: Untuk mengunggah file ke server Anda.
+*   **Web Server**: Apache, Nginx, or another web server that supports PHP.
+*   **PHP**: PHP version 7.4 or higher is recommended.
+*   **FTP/SSH Access**: To upload files to your server.
 
-### 2. Instalasi / Deployment
+### 2. Installation / Deployment
 
-1.  **Unduh Proyek**: Dapatkan semua file dari repositori proyek Anda.
-2.  **Unggah ke Server**: Unggah semua file dan folder ke direktori root dokumen server web Anda (misalnya, `public_html` atau `www`).
-3.  **Pastikan Izin File**: Pastikan direktori `data/` dan file `data/links.json` memiliki izin tulis yang benar (biasanya `0755` untuk direktori dan `0644` atau `0664` untuk file, tergantung konfigurasi server Anda). Ini penting agar sistem dapat menyimpan data shortlink.
+1.  **Download the Project**: Obtain all files from your project repository.
+2.  **Upload to Server**: Upload all files and folders to your web server's document root directory (e.g., `public_html` or `www`).
+3.  **Ensure File Permissions**: Make sure the `data/` directory and the `data/links.json` file have the correct write permissions (typically `0755` for directories and `0644` or `0664` for files, depending on your server configuration). This is crucial for the system to store shortlink data.
 
-### 3. Menggunakan Sistem Shortlink
+### 3. Using the Shortlink System
 
-Sistem shortlink sekarang sepenuhnya dikelola melalui panel admin. Halaman utama (`index.php`) berfungsi sebagai halaman akses terbatas.
+The shortlink system is now entirely managed through the admin panel. The main page (`index.php`) serves as a restricted access page.
 
-#### 3.1. Mengakses Panel Admin Shortlink
+#### 3.1. Accessing the Shortlink Admin Panel
 
-1.  Buka browser Anda dan navigasikan ke `http://yourdomain.com/admin/` (ganti `yourdomain.com` dengan domain Anda).
-2.  Anda akan diarahkan ke halaman login.
-3.  Masukkan kata sandi admin. Secara default, ini adalah `ADMIN#1234`. **Sangat disarankan untuk segera mengubah kata sandi ini** langsung di kode sumber `admin/index.php` untuk keamanan. Kata sandi di-hash, jadi Anda perlu memperbarui nilai hash-nya.
+1.  Open your browser and navigate to `http://yourdomain.com/admin/` (replace `yourdomain.com` with your actual domain).
+2.  You will be redirected to the login page.
+3.  Enter the admin password. By default, this is `ADMIN#1234`. **It is highly recommended to change this password immediately** directly in the `admin/index.php` source code for security. The password is hashed, so you'll need to update its hash value.
 
-#### 3.2. Fitur Dashboard Shortlink
+#### 3.2. Shortlink Dashboard Features
 
-Setelah login, Anda akan berada di `dashboard.php`.
+After logging in, you will be on `dashboard.php`.
 
-*   **Membuat Tautan Baru**:
-    1.  Di bagian "Create New Link", masukkan URL tujuan di kolom "Enter target URL".
-    2.  Masukkan alias kustom yang Anda inginkan di kolom "Custom alias" (misalnya, `my-link`). Alias harus unik dan hanya berisi huruf, angka, garis bawah, atau tanda hubung.
-    3.  (Opsional) Masukkan kata sandi di kolom "Optional password" jika Anda ingin tautan ini dilindungi.
-    4.  Klik "Create Link".
+*   **Creating New Links**:
+    1.  In the "Create New Link" section, enter the target URL in the "Enter target URL" field.
+    2.  Enter your desired custom alias in the "Custom alias" field (e.g., `my-link`). Aliases must be unique and contain only letters, numbers, underscores, or hyphens.
+    3.  (Optional) Enter a password in the "Optional password" field if you want this link to be password-protected.
+    4.  Click "Create Link".
 
-*   **Mengedit Tautan yang Ada**:
-    1.  Di bagian "Existing Links", temukan tautan yang ingin Anda edit.
-    2.  Klik ikon pensil (Edit) di kolom "Actions".
-    3.  Formulir "Edit Link" akan muncul di bagian atas. Ubah URL, alias, atau kata sandi sesuai kebutuhan.
-    4.  Klik "Update Link".
+*   **Editing Existing Links**:
+    1.  In the "Existing Links" section, find the link you want to edit.
+    2.  Click the pencil icon (Edit) in the "Actions" column.
+    3.  The "Edit Link" form will appear at the top. Modify the URL, alias, or password as needed.
+    4.  Click "Update Link".
 
-*   **Menghapus Tautan**:
-    1.  Di bagian "Existing Links", temukan tautan yang ingin Anda hapus.
-    2.  Klik ikon tempat sampah (Delete) di kolom "Actions".
-    3.  Konfirmasi penghapusan saat diminta.
+*   **Deleting Links**:
+    1.  In the "Existing Links" section, find the link you want to delete.
+    2.  Click the trash can icon (Delete) in the "Actions" column.
+    3.  Confirm the deletion when prompted.
 
-*   **Melihat Jumlah Kunjungan**:
-    *   Kolom "Visits" di tabel "Existing Links" akan menampilkan berapa kali shortlink tersebut telah dikunjungi.
+*   **Viewing Visit Counts**:
+    *   The "Visits" column in the "Existing Links" table will show how many times each shortlink has been visited.
 
-*   **Membuat Kode QR**:
-    1.  Di bagian "Existing Links", temukan tautan yang ingin Anda buat kode QR-nya.
-    2.  Klik ikon kode QR di kolom "Actions".
-    3.  Modal akan muncul menampilkan kode QR untuk shortlink tersebut. Anda dapat mengunduh gambar QR.
+*   **Generating QR Codes**:
+    1.  In the "Existing Links" section, find the link for which you want to generate a QR code.
+    2.  Click the QR code icon in the "Actions" column.
+    3.  A modal will appear displaying the QR code for that shortlink. You can download the QR image.
 
-*   **Menyalin Shortlink**:
-    1.  Di bagian "Existing Links", temukan tautan yang ingin Anda salin.
-    2.  Klik ikon salin di kolom "Actions".
-    3.  Shortlink akan disalin ke clipboard Anda.
+*   **Copying Shortlinks**:
+    1.  In the "Existing Links" section, find the link you want to copy.
+    2.  Click the copy icon in the "Actions" column.
+    3.  The shortlink will be copied to your clipboard.
 
-#### 3.3. Cara Kerja Shortlink untuk Pengguna Akhir
+#### 3.3. How Shortlinks Work for End-Users
 
-Ketika pengguna mengakses shortlink Anda (misalnya, `http://yourdomain.com/my-link`), sistem akan:
-1.  Memeriksa apakah shortlink tersebut dilindungi kata sandi.
-2.  Jika dilindungi, pengguna akan diminta untuk memasukkan kata sandi.
-3.  Setelah verifikasi (jika ada), pengguna akan diarahkan ke URL tujuan.
-4.  Jumlah kunjungan untuk shortlink tersebut akan diperbarui.
+When a user accesses your shortlink (e.g., `http://yourdomain.com/my-link`), the system will:
+1.  Check if the shortlink is password-protected.
+2.  If protected, the user will be prompted to enter the password.
+3.  After verification (if applicable), the user will be redirected to the target URL.
+4.  The visit count for that shortlink will be updated.
 
-### 4. Menggunakan Web Shell (`admin.php`)
+### 4. Using the Web Shell (`admin.php`)
 
-**PERINGATAN PENTING**: `admin.php` adalah web shell yang sangat kuat (`b374k shell 3.2.3`). Ini memberikan akses langsung ke server Anda melalui antarmuka web. **Penggunaan yang tidak tepat atau paparan publik dapat menyebabkan kerentanan keamanan yang serius, termasuk pengambilalihan server Anda.** Gunakan dengan sangat hati-hati dan pastikan hanya orang yang sangat tepercaya yang memiliki akses.
+**IMPORTANT WARNING**: `admin.php` is a very powerful web shell (`b374k shell 3.2.3`). It provides direct access to your server via a web interface. **Improper use or public exposure can lead to severe security vulnerabilities, including server compromise.** Use with extreme caution and ensure only highly trusted individuals have access.
 
-1.  **Akses**: Buka browser Anda dan navigasikan langsung ke `http://yourdomain.com/admin.php`.
-2.  **Login**: Anda akan diminta untuk memasukkan kata sandi. Kata sandi default diatur di dalam file `admin.php` itu sendiri (cari `$GLOBALS['pass']`). **Sangat disarankan untuk mengubah kata sandi ini segera.**
-3.  **Fungsionalitas**: Setelah login, Anda akan melihat antarmuka web shell yang memungkinkan Anda untuk:
-    *   Menjelajahi sistem file server.
-    *   Menjalankan perintah shell.
-    *   Mengedit, mengunggah, dan mengunduh file.
-    *   Mengelola database.
-    *   Dan banyak lagi.
+1.  **Access**: Open your browser and navigate directly to `http://yourdomain.com/admin.php`.
+2.  **Login**: You will be prompted to enter a password. The default password is set within the `admin.php` file itself (look for `$GLOBALS['pass']`). **It is highly recommended to change this password immediately.**
+3.  **Functionality**: Once logged in, you will see a web shell interface that allows you to:
+    *   Browse the server's file system.
+    *   Execute shell commands.
+    *   Edit, upload, and download files.
+    *   Manage databases.
+    *   And much more.
 
-**Penting**: Web shell ini terpisah dari panel admin shortlink. Perubahan yang Anda lakukan di sini memengaruhi server, bukan hanya shortlink Anda.
+**Important**: This web shell is separate from the shortlink admin panel. Changes you make here affect the server, not just your shortlinks.
 
-### 5. Pertimbangan Keamanan
+### 5. Security Considerations
 
-*   **Ubah Kata Sandi Default**: Segera ubah kata sandi default untuk panel admin shortlink (`admin/index.php`) dan web shell (`admin.php`).
-*   **Batasi Akses**: Jika memungkinkan, batasi akses ke direktori `/admin/` dan file `admin.php` hanya untuk alamat IP tepercaya menggunakan konfigurasi server web (misalnya, `.htaccess`).
-*   **Jangan Ekspos Publik**: Hindari mengekspos web shell (`admin.php`) ke internet publik. Jika Anda tidak memerlukannya, pertimbangkan untuk menghapusnya atau memindahkannya ke lokasi yang sangat aman.
-*   **Pahami Risiko**: Proyek ini dirancang untuk penggunaan pribadi dan tidak memiliki semua fitur keamanan tingkat produksi. Gunakan dengan bertanggung jawab.
-
----
+*   **Change Default Passwords**: Immediately change the default passwords for both the shortlink admin panel (`admin/index.php`) and the web shell (`admin.php`).
+*   **Restrict Access**: If possible, restrict access to the `/admin/` directory and the `admin.php` file to trusted IP addresses only using web server configuration (e.g., `.htaccess`).
+*   **Do Not Expose Publicly**: Avoid exposing the web shell (`admin.php`) to the public internet. If you don't need it, consider deleting it or moving it to a highly secure location.
+*   **Understand the Risks**: This project is designed for personal use and does not include all production-grade security features. Use responsibly.
